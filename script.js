@@ -28,6 +28,9 @@ function onReady() {
     // - Rendered to the DOM
     render()
 }
+// if no more AP than you cant attack. 
+// Give all of the attack buttons a disabled attribute, 
+// so they may no longer be used.
 
 function arcaneSceptre() {
     console.log('in arcaneSceptre function');
@@ -36,13 +39,14 @@ function arcaneSceptre() {
 
     newHealth -= 14;
     attackPoint -= 12;
-    if (newHealth < 0){
+    if (newHealth < 0) {
         newHealth = 0;
     }
-    if (attackPoint < 0){
+    if (attackPoint < 0) {
         attackPoint = 0;
+
     }
-        console.log('after decrement', newHealth)
+    console.log('after decrement', newHealth)
     console.log('before decrement', attackPoint)
 
     render()
@@ -55,10 +59,10 @@ function entangle() {
 
     newHealth -= 9;
     attackPoint -= 23;
-    if (newHealth < 0){
+    if (newHealth < 0) {
         newHealth = 0;
     }
-    if (attackPoint < 0){
+    if (attackPoint < 0) {
         attackPoint = 0;
     }
     console.log('after decrement', newHealth)
@@ -74,10 +78,10 @@ function dragonBlade() {
 
     newHealth -= 47;
     attackPoint -= 38;
-    if (newHealth < 0){
+    if (newHealth < 0) {
         newHealth = 0;
     }
-    if (attackPoint < 0){
+    if (attackPoint < 0) {
         attackPoint = 0;
     }
     console.log('after decrement', newHealth)
@@ -93,10 +97,10 @@ function starFire() {
 
     newHealth -= 25;
     attackPoint -= 33;
-    if (newHealth < 0){
+    if (newHealth < 0) {
         newHealth = 0;
     }
-    if (attackPoint < 0){
+    if (attackPoint < 0) {
         attackPoint = 0;
     }
     console.log('after decrement', newHealth)
@@ -105,7 +109,31 @@ function starFire() {
     render()
 }
 
+function freakyFungusNoH() {
+
+}
+// You may no longer attack, if AP is 0. 
+// Give all of the attack buttons 
+// a disabled attribute, 
+// so they may no longer be used.
+
+
 function render() {
-    $(".hp-text").html(newHealth + ' ' + 'AP')
+    $(".hp-text").html(newHealth + ' ' + 'HP')
     $(".ap-text").html(attackPoint + ' ' + 'AP')
+    //
+    if (newHealth === 0) {
+        $('.freaky-fungus').removeClass('walk')
+        $('.freaky-fungus').addClass('dead')
+    }
+    //if statement to change the fungus class to dead
+    // when hp falls to zero
+
+    if (attackPoint === 0) {
+        //if statement to change the fungus class to jump
+        // when ap falls to zero
+        $('.attack-btn').attr('disabled', true)
+        $('.freaky-fungus').removeClass('walk')
+        $('.freaky-fungus').addClass('jump')
+    }
 }
